@@ -1,0 +1,56 @@
+# ==============================================================================
+# Image Processing Gate Checker - Configuration Schema
+# ==============================================================================
+
+version: "1.0"
+
+camera:
+  name: "Main_Gate_CCTV"
+  rtsp_url: "rtsp://192.168.1.4:554/stream1"
+  transport: "tcp" # 'tcp' or 'udp'
+  buffer_size: 1024
+  reconnect_backoff_sec: 5
+  max_reconnect_retries: 15
+
+processing:
+  target_fps: 5
+  resolution:
+    width: 1280
+    height: 720
+  grayscale: true
+  gaussian_blur_kernel: [5, 5]
+  clahe:
+    enabled: true
+    clip_limit: 2.0
+    tile_grid_size: [8, 8]
+
+gate_detection:
+  method: "background_subtraction_contour" # options: background_subtraction_contour, edge_density, dl_classifier
+  roi:
+    # Normalized coordinates [0.0 - 1.0] or absolute pixels
+    mode: "normalized"
+    polygon:
+      - [0.15, 0.20]
+      - [0.85, 0.20]
+      - [0.85, 0.85]
+      - [0.15, 0.85]
+  sensitivity:
+    min_contour_area: 1200
+    motion_threshold: 25
+    state_confirmation_frames: 10 # consecutive frames required to confirm state change
+
+alerting:
+  enabled: false
+  webhook_url: ""
+  cooldown_seconds: 60
+  notify_on_states:
+    - "OPEN"
+    - "OBSTRUCTED"
+    - "CAMERA_DISCONNECTED"
+
+audit:
+  enabled: true
+  storage_path: "logs/audit_events.jsonl"
+  capture_snapshot_on_state_change: true
+  snapshot_dir: "snapshots/audit"
+  retention_days: 30
