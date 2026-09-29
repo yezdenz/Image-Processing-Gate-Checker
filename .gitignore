@@ -1,0 +1,96 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Environment variables & secrets (CRITICAL: Do not commit camera credentials)
+.env
+.env.local
+.env.*.local
+*.env
+credentials.yaml
+secrets.yaml
+
+# CCTV Media, Snapshots & Video Dumps
+recordings/
+snapshots/
+debug_frames/
+output/
+captures/
+*.mp4
+*.avi
+*.mkv
+*.h264
+*.jpg
+*.jpeg
+*.png
+*.bmp
+
+# Machine Learning & Model Training Artifacts
+data/raw/
+data/processed/
+models/checkpoints/
+models/exported/
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.engine
+runs/
+wandb/
+mlruns/
+
+# Logs & Audit output
+*.log
+logs/
+audit_records/
+*.sqlite
+*.db
+
+# Testing & Coverage
+.coverage
+.pytest_cache/
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
